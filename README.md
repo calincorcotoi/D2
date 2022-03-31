@@ -1,1 +1,1 @@
-Dating app build with Angular and .net Core 6
+Dating app build with Angular 12 and .net Core 6

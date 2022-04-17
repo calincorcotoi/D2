@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs/operators';
 import { AccountService } from './_services/account.service';
 
 @Component({
@@ -10,10 +12,18 @@ export class AppComponent implements OnInit {
   title = 'The Dating App';
   users:any;
 
-  constructor( private accountService: AccountService){
+  constructor( private accountService: AccountService,private http: HttpClient){
   }
 
   ngOnInit(): void {
+    console.log(
+      );
+    }
+
+    a(){
+      this.http.get("https://localhost:5001/api/users").pipe(
+        
+      )
     }
 
     serCurrentUser(){

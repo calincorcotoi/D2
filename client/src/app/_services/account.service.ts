@@ -28,10 +28,8 @@ export class AccountService {
   }
 
   register(model: any){
-    console.log("QWEQWE");
       return this.http.post(this.baseUrl + 'account/register', model).pipe(
         map((user: User) =>{
-          console.log("ASDASD");
           if(user){
             localStorage.setItem('user', JSON.stringify(user));
             this.currentUserSource.next(user);

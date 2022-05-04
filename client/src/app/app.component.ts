@@ -16,14 +16,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(
-      );
-    }
-
-    a(){
-      this.http.get("https://localhost:5001/api/users").pipe(
-        
-      )
+    this.serCurrentUser();
     }
 
     serCurrentUser(){

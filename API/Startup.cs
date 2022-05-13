@@ -66,8 +66,10 @@ namespace API
 
             app.UseCors(x => x.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
+            //who you are ?
             app.UseAuthentication();//order is important!
 
+            //are you allowed?
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

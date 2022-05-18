@@ -25,7 +25,7 @@ export class PhotoEditorComponent implements OnInit {
   baseUrl = environment.apiUrl;
 
   constructor(accountSerice:AccountService,
-    private memberService:MembersService) {
+    private memberService:MembersService, private accountService: AccountService) {
       accountSerice.currentUser$.pipe(take(1)).subscribe(u =>{ this.user = u});
    }
 
@@ -64,6 +64,14 @@ export class PhotoEditorComponent implements OnInit {
       if(response){
         const photo = JSON.parse(response);
         this.member.photos.push(photo);
+        if(this.user.mainPhotoUrl === null){//udemy if(photo.isMain)
+          this.user.mainPhotoUrl = photo.url;
+          this.member.photoUrl = photo.url;
+
+          this.accountService.setCurrentUser(this.user);
+          this.memberService.updateMember(this.member);
+        }
+        
       }
     }
   }

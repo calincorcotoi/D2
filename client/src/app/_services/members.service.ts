@@ -47,10 +47,20 @@ export class MembersService {
      return this.userParams;
    }
 
+   addLike(username:string){
+     return this.http.post(this.baseUrl + 'likes/' + username,{});
+   }
+
+   getLikes(predicate:string,pageNumber:number, pageSize:number){
+    let params = this.appedUserParams(pageNumber, pageSize);
+    params = params.append('predicate', predicate);
+    
+    return this.getPaginatedResult<Partial<Member[]>>(this.baseUrl + 'likes', params);
+    //  return this.http.get<Partial<Member[]>>(this.baseUrl + 'likes?predicate=' + predicate);
+   }
+
   // getMembers(page?: number, itemsPerPage?: number){
   getMembers(userParams: UserParams){
-
-    console.log();
     var response = this.memberCache.get(Object.values(userParams).join('-'));
     if(response) return of(response);
 
@@ -92,7 +102,7 @@ export class MembersService {
    }
     
       return this.http.get<Member>(this.baseUrl + 'users/' + username);
-    }
+  }
 
   updateMember(member: Member){
     return this.http.put(this.baseUrl + 'users/',member).pipe(map(()=>{

@@ -1,0 +1,28 @@
+<div class="modal-header">
+      <h4 class="modal-title pull-left">{{title}}</h4>
+      <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+
+        <form #rolesForm="ngForm" (ngSubmit)='updateRoles(user.userName)'>
+            <div>
+                <input type="checkbox"  name="Member" value="Member" [(ngModel)]="setMember">
+                <label for="vehicle1">&emsp;Member</label><br>
+            </div>
+            <div>
+                <input type="checkbox" id="vehicle1" name="Admin" value="Admin" [(ngModel)]="setAdmin">
+                <label for="vehicle1">&emsp;Admin</label><br>
+            </div>
+            <div>
+                <input type="checkbox" id="vehicle1" name="Moderator" value="Moderator" [(ngModel)]="setModerator">
+                <label for="vehicle1">&emsp;Moderator</label><br>
+            </div>
+            <div class="text-center">
+                <button type="button" class="btn btn-success" type="submit">Update Roles</button>
+            </div>            
+        </form>
+    </div>
+    <div class="modal-footer">
+</div>

@@ -32,6 +32,7 @@ namespace API.Controllers
             
         }
         
+        [Authorize(Roles = "Member")]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetMembers([FromQuery]UserParams userParams)
         {
@@ -48,6 +49,7 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        [Authorize(Roles = "Member")]
         [HttpGet("{username}", Name ="GetAppUser")]
         public async Task<ActionResult<MemberDto>> GetAppUser(string username)
         {
@@ -58,7 +60,9 @@ namespace API.Controllers
         [HttpPut]
         public async Task<ActionResult> UpdateUser(MemberUpdateDto memberUpdateDto)
         {
-            var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+            // var username = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+            var username = User.GetUsername();
 
             var user = await _userReposity.GetUserByUsernameAsync(username);
 
